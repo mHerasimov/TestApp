@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TestApp</string>
+
+    <string name="btn_text_create_notification">Create new\nnotification</string>
 </resources>
