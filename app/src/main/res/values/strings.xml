@@ -2,4 +2,13 @@
     <string name="app_name">TestApp</string>
 
     <string name="btn_text_create_notification">Create new\nnotification</string>
+
+    <string name="notification_text">Notification %1$s</string>
+
+    <string name="notification_channel_name" translatable="false">TestApp_Notification_channel</string>
+    <string name="notification_channel_id" translatable="false">testapp_notification_id</string>
+    <string name="notification_group_id" translatable="false">testapp_group_id</string>
+    <string name="notification_group_key" translatable="false">testapp_group_key</string>
+    <string name="notification_group_name" translatable="false">testapp_group_name</string>
+
 </resources>
