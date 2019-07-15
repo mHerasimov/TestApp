@@ -1,5 +1,6 @@
 package com.mikeherasimov.testapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = adapter
         fabAdd.setOnClickListener {
             pagesCount++
-            adapter.addFragment(PageFragment.newInstance(pagesCount.toString()))
+            adapter.addFragment(PageFragment.newInstance(pagesCount))
             viewPager.setCurrentItem(pagesCount, true)
             updateRemoveVisibility()
         }
@@ -28,6 +29,17 @@ class MainActivity : AppCompatActivity() {
             updateRemoveVisibility()
         }
         fabAdd.performClick()
+        onNewIntent(intent)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        val pageToOpen = intent.getIntExtra(PageFragment.ARG_PAGE_NUMBER, -1)
+        if (pageToOpen != -1) {
+            for (i in pagesCount until pageToOpen) {
+                fabAdd.performClick()
+            }
+            viewPager.setCurrentItem(pageToOpen - 1, true)
+        }
     }
 
     private fun updateRemoveVisibility() {

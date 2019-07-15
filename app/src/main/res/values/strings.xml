@@ -3,7 +3,7 @@
 
     <string name="btn_text_create_notification">Create new\nnotification</string>
 
-    <string name="notification_text">Notification %1$s</string>
+    <string name="notification_text">Notification %1$d</string>
 
     <string name="notification_channel_name" translatable="false">TestApp_Notification_channel</string>
     <string name="notification_channel_id" translatable="false">testapp_notification_id</string>

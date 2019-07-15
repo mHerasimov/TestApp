@@ -19,7 +19,7 @@ import java.util.*
 
 class PageFragment : Fragment() {
 
-    private val pageName: String by lazy { arguments!!.getString(ARG_PAGE_NAME) }
+    private val pageNumber: Int by lazy { arguments!!.getInt(ARG_PAGE_NUMBER) }
     private val notificationIds = mutableListOf<Int>()
 
     override fun onCreateView(
@@ -31,12 +31,12 @@ class PageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tvPageNumber.text = pageName
+        tvPageNumber.text = pageNumber.toString()
         tvCreateNotification.setOnClickListener {
             val id = showNotification(
                 context!!,
                 getString(R.string.app_name),
-                getString(R.string.notification_text, pageName)
+                getString(R.string.notification_text, pageNumber)
             )
             notificationIds.add(id)
         }
@@ -58,6 +58,7 @@ class PageFragment : Fragment() {
 
     private fun setupPendingIntent(context: Context): PendingIntent {
         val intent = Intent(context, MainActivity::class.java)
+        intent.putExtra(ARG_PAGE_NUMBER, pageNumber)
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         return PendingIntent.getActivity(
             context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
@@ -98,12 +99,12 @@ class PageFragment : Fragment() {
 
     companion object {
 
-        private const val ARG_PAGE_NAME = "pageName"
+        const val ARG_PAGE_NUMBER = "pageNumber"
 
-        fun newInstance(pageName: String): PageFragment {
+        fun newInstance(pageNumber: Int): PageFragment {
             val fragment = PageFragment()
             val args = Bundle()
-            args.putString(ARG_PAGE_NAME, pageName)
+            args.putInt(ARG_PAGE_NUMBER, pageNumber)
             fragment.arguments = args
             return fragment
         }
