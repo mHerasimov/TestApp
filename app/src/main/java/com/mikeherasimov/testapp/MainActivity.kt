@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         }
         fabRemove.setOnClickListener {
             pagesCount--
+            (adapter.getItem(pagesCount) as PageFragment).dismissNotifications()
             viewPager.setCurrentItem(pagesCount, true)
             adapter.removeLastFragment()
             updateRemoveVisibility()
