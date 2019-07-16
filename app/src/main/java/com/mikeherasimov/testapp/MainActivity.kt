@@ -23,21 +23,16 @@ class MainActivity : AppCompatActivity() {
         }
         fabRemove.setOnClickListener {
             pagesCount--
-            (adapter.getItem(pagesCount) as PageFragment).dismissNotifications()
             viewPager.setCurrentItem(pagesCount, true)
             adapter.removeLastFragment()
             updateRemoveVisibility()
         }
         fabAdd.performClick()
-        onNewIntent(intent)
     }
 
     override fun onNewIntent(intent: Intent) {
         val pageToOpen = intent.getIntExtra(PageFragment.ARG_PAGE_NUMBER, -1)
         if (pageToOpen != -1) {
-            for (i in pagesCount until pageToOpen) {
-                fabAdd.performClick()
-            }
             viewPager.setCurrentItem(pageToOpen - 1, true)
         }
     }

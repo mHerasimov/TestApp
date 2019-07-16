@@ -42,7 +42,12 @@ class PageFragment : Fragment() {
         }
     }
 
-    fun dismissNotifications() {
+    override fun onDestroy() {
+        super.onDestroy()
+        dismissNotifications()
+    }
+
+    private fun dismissNotifications() {
         for (id in notificationIds) {
             NotificationManagerCompat.from(context!!).cancel(id)
         }

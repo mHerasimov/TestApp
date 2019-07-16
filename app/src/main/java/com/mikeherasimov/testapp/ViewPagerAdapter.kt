@@ -4,6 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.PagerAdapter
+import android.view.ViewGroup
+
+
 
 
 class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
@@ -20,6 +23,13 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
             return PagerAdapter.POSITION_UNCHANGED
         }
         return PagerAdapter.POSITION_NONE
+    }
+
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        if (position >= count) {
+            val manager = (`object` as Fragment).fragmentManager
+            manager!!.beginTransaction().remove(`object`).commit()
+        }
     }
 
     fun addFragment(fragment: Fragment) {
