@@ -7,8 +7,6 @@ import androidx.viewpager.widget.PagerAdapter
 import android.view.ViewGroup
 
 
-
-
 class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     private val fragments = mutableListOf<Fragment>()

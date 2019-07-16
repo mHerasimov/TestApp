@@ -16,15 +16,13 @@ class MainActivity : AppCompatActivity() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
         viewPager.adapter = adapter
         fabAdd.setOnClickListener {
-            pagesCount++
-            adapter.addFragment(PageFragment.newInstance(pagesCount))
+            adapter.addFragment(PageFragment.newInstance(++pagesCount))
             viewPager.setCurrentItem(pagesCount, true)
             updateRemoveVisibility()
         }
         fabRemove.setOnClickListener {
-            pagesCount--
-            viewPager.setCurrentItem(pagesCount, true)
             adapter.removeLastFragment()
+            viewPager.setCurrentItem(--pagesCount, true)
             updateRemoveVisibility()
         }
         fabAdd.performClick()
