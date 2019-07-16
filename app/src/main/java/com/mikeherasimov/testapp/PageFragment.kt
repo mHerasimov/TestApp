@@ -58,10 +58,10 @@ class PageFragment : Fragment() {
 
     private fun setupPendingIntent(context: Context): PendingIntent {
         val intent = Intent(context, MainActivity::class.java)
-        intent.putExtra(ARG_PAGE_NUMBER, pageNumber)
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        intent.putExtra(ARG_PAGE_NUMBER, pageNumber)
         return PendingIntent.getActivity(
-            context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+            context, Random().nextInt(), intent, PendingIntent.FLAG_UPDATE_CURRENT
         )
     }
 
